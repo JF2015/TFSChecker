@@ -42,3 +42,5 @@ C:\Users\jfiedle\Google Drive\Arbeit\TFS Tool\TFS2010\TFS2010\obj\x86\Debug\TFS2
 C:\Users\jfiedle\Google Drive\Arbeit\TFS Tool\TFS2010\TFS2010\obj\x86\Debug\TFS2010.Form1.resources
 C:\Users\jfiedle\Google Drive\Arbeit\TFS Tool\TFS2010\TFS2010\obj\x86\Debug\TFS2010.Properties.Resources.resources
 C:\Users\jfiedle\Google Drive\Arbeit\TFS Tool\TFS2010\TFS2010\obj\x86\Debug\TFS2010.csproj.GenerateResource.Cache
+C:\Users\jfiedle\Documents\GitHub\TFSChecker\TFSChecker\obj\x86\Debug\TFS2010.exe
+C:\Users\jfiedle\Documents\GitHub\TFSChecker\TFSChecker\obj\x86\Debug\TFS2010.pdb

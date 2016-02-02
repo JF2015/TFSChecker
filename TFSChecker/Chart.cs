@@ -1,5 +1,5 @@
 ﻿/*
-   PACKAGE:    Accuracy Logger application
+   PACKAGE:    TFS Checker application
    FILE:       Chart.cs
    ABSTRACT:   Chart form which displays the results of TFS stats tool
    AUTHOR:     Jens Fiedler
