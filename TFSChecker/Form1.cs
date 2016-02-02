@@ -26,18 +26,19 @@ namespace TFS2010
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            richTextBox1.Text = "";
+            richTextBoxCommitters.Text = "";
+            richTextBoxCommitters.ReadOnly = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 m_Committers.Clear();
                 m_Checkins.Clear();
-                richTextBox1.Text = "";
-                textBox2.ReadOnly = true;
-                TfsTeamProjectCollection tfsProjectCollection = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(textBox2.Text));
+                richTextBoxCommitters.Text = "";
+                TfsTeamProjectCollection tfsProjectCollection = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(txtBoxServerAdress.Text));
 
                 var versionControl = tfsProjectCollection.GetService<VersionControlServer>();
 
@@ -58,8 +59,8 @@ namespace TFS2010
                         }
                         else
                         {
-                            if (committer.Length > 10)
-                                committer = committer.Substring(0, 10);
+                            //if (committer.Length > 10)
+                            //    committer = committer.Substring(0, 10);
                             m_Committers.Add(committer, 1);
                             Dictionary<DateTime, int> dic = new Dictionary<DateTime, int>();
                             dic.Add(changeset.CreationDate, 1);
@@ -70,8 +71,8 @@ namespace TFS2010
 
                 foreach (KeyValuePair<string, int> pair in m_Committers.OrderByDescending(key => key.Value))
                 {
-                    richTextBox1.Text += pair.Key + (" ").PadLeft(15 - pair.Key.Length) + pair.Value;
-                    richTextBox1.Text += Environment.NewLine;
+                    richTextBoxCommitters.Text += pair.Key + (" ") + pair.Value;
+                    richTextBoxCommitters.Text += Environment.NewLine;
                 }
                 ChartForm frm = new ChartForm(this);
                 frm.Show();
@@ -80,7 +81,7 @@ namespace TFS2010
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            textBox2.ReadOnly = false;
+            Cursor.Current = Cursors.Default;
         }
     }
 }

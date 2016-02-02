@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxCommitters = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtBoxServerAdress = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -48,19 +48,19 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // richTextBox1
+            // richTextBoxCommitters
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(439, 344);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.richTextBoxCommitters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxCommitters.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxCommitters.Location = new System.Drawing.Point(3, 16);
+            this.richTextBoxCommitters.Name = "richTextBoxCommitters";
+            this.richTextBoxCommitters.Size = new System.Drawing.Size(439, 344);
+            this.richTextBoxCommitters.TabIndex = 3;
+            this.richTextBoxCommitters.Text = "";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.richTextBoxCommitters);
             this.groupBox1.Location = new System.Drawing.Point(9, 77);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(445, 363);
@@ -70,7 +70,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.txtBoxServerAdress);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
@@ -88,12 +88,12 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "TFS URL";
             // 
-            // textBox2
+            // txtBoxServerAdress
             // 
-            this.textBox2.Location = new System.Drawing.Point(72, 11);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(277, 20);
-            this.textBox2.TabIndex = 8;
+            this.txtBoxServerAdress.Location = new System.Drawing.Point(72, 11);
+            this.txtBoxServerAdress.Name = "txtBoxServerAdress";
+            this.txtBoxServerAdress.Size = new System.Drawing.Size(277, 20);
+            this.txtBoxServerAdress.TabIndex = 8;
             // 
             // Form1
             // 
@@ -118,11 +118,11 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxCommitters;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtBoxServerAdress;
     }
 }
 
