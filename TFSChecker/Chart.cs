@@ -6,24 +6,25 @@
 */
 
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Linq;
 
 namespace TFS2010
 {
     public partial class ChartForm : Form
     {
-        public string m_File = "";
-        public string m_Comment = "";
-        private readonly Form1 m_parent;
+        public string File = "";
+        public string Comment = "";
+        private readonly Form1 _parent;
+
         public ChartForm(Form1 parent)
         {
             InitializeComponent();
-            m_parent = parent;
+            _parent = parent;
             chart1.MouseWheel += chart_MouseWheel;
             SetupSeries();
         }
@@ -33,9 +34,9 @@ namespace TFS2010
             chart1.Series.Clear();
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
 
-            foreach (KeyValuePair<string, Dictionary<DateTime, int>> pair in m_parent.m_Checkins)
+            foreach (var pair in _parent.Checkins)
             {
-                Series ser = chart1.Series.Add(pair.Key);
+                var ser = chart1.Series.Add(pair.Key);
                 ser.ChartType = SeriesChartType.FastLine;
                 ser.XValueType = ChartValueType.DateTime;
                 ser.BorderWidth = 2;
@@ -46,10 +47,10 @@ namespace TFS2010
                 ser.EmptyPointStyle.MarkerBorderColor = Color.Black;
                 ser.EmptyPointStyle.MarkerColor = Color.LightGray;
                 ser.XValueType = ChartValueType.DateTime;
-                int i = 0;
+                var i = 0;
                 var dic = pair.Value.OrderBy(key => key.Key).ToDictionary(x => x.Key, x => x.Value);
 
-                foreach (KeyValuePair<DateTime, int> time in dic)
+                foreach (var time in dic)
                 {
                     //i += time.Value; //use this to display the number of checked in files (instead of i++)
                     i++;
@@ -63,20 +64,20 @@ namespace TFS2010
             try
             {
                 SetupSeries();
-                double xMin = chart1.ChartAreas[0].AxisX.ScaleView.ViewMinimum;
-                double xMax = chart1.ChartAreas[0].AxisX.ScaleView.ViewMaximum;
+                var xMin = chart1.ChartAreas[0].AxisX.ScaleView.ViewMinimum;
+                var xMax = chart1.ChartAreas[0].AxisX.ScaleView.ViewMaximum;
 
                 if (e.Delta < 0)
                 {
-                    double posXStart = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) - (xMax - xMin);
-                    double posXFinish = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) + (xMax - xMin);
+                    var posXStart = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) - (xMax - xMin);
+                    var posXFinish = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) + (xMax - xMin);
 
                     chart1.ChartAreas[0].AxisX.ScaleView.Zoom(posXStart, posXFinish);
                 }
                 else if (e.Delta > 0)
                 {
-                    double posXStart = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) - (xMax - xMin) / 4;
-                    double posXFinish = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) + (xMax - xMin) / 4;
+                    var posXStart = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) - (xMax - xMin) / 4;
+                    var posXFinish = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.Location.X) + (xMax - xMin) / 4;
 
                     chart1.ChartAreas[0].AxisX.ScaleView.Zoom(posXStart, posXFinish);
                 }
@@ -97,10 +98,10 @@ namespace TFS2010
         {
             if (e.HitTestResult.ChartElementType == ChartElementType.DataPoint)
             {
-                int i = e.HitTestResult.PointIndex;
+                var i = e.HitTestResult.PointIndex;
                 DataPoint dp = e.HitTestResult.Series.Points[i];
                 e.Text = "Name: " + e.HitTestResult.Series.Name + "\nDate: " + (DateTime.FromOADate(dp.XValue).ToShortDateString() +
-                         "\nValue: " + dp.YValues[0].ToString(CultureInfo.InvariantCulture));
+                                                                                "\nValue: " + dp.YValues[0].ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -109,7 +110,7 @@ namespace TFS2010
             chart1.ChartAreas[0].AxisX.ScaleView.ZoomReset(0);
         }
 
-        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             zoomOutToolStripMenuItem.Enabled = chart1.ChartAreas[0].AxisX.ScaleView.IsZoomed;
         }
